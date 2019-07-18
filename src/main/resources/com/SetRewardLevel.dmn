@@ -1,11 +1,118 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://github.com/kiegroup/drools/kie-dmn/_457FD28E-EC75-4708-9BE6-E31BDAAB9B4E" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_BB3A20A7-BFE6-47B0-9D1B-0F5A86AFA595" name="SetRewardLevel" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://github.com/kiegroup/drools/kie-dmn/_457FD28E-EC75-4708-9BE6-E31BDAAB9B4E">
   <dmn:extensionElements/>
+  <dmn:decision id="_600806C6-5E3E-4E69-90C5-0FDAB90D2F23" name="Determine Reward Level">
+    <dmn:variable id="_4BCAB664-A1B9-4FE7-B419-9386562FC984" name="Determine Reward Level" typeRef="string"/>
+    <dmn:informationRequirement id="_3355533B-C523-49D4-9418-83F08FF68085">
+      <dmn:requiredInput href="#_F91159C4-78C4-4461-B65C-407D4C5A38A4"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_2BC5F8DF-94BB-4832-BA9A-B596F7DCC9D5">
+      <dmn:requiredInput href="#_85ACC529-D048-42CD-90B9-50E667BBC143"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_B9061C56-A2A8-4050-B063-C55CEE927663" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_5BBB868F-4C63-4BE2-9AE5-007754C807FC">
+        <dmn:inputExpression id="_76FF4725-18E1-4012-9593-49F607B306B5" typeRef="number">
+          <dmn:text>NoOfFlights</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_205B9213-219B-40A4-87A1-810C87FD8B12">
+        <dmn:inputExpression id="_47FCC433-F294-4929-B4BD-0AF4267A360C" typeRef="number">
+          <dmn:text>YearsInScheme</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_6DFED07E-FCC4-4AA7-8E07-04C000F1F430" typeRef="string"/>
+      <dmn:rule id="_28705AFA-9CAB-4694-B438-8FFE1E43842E">
+        <dmn:description>Set level to bronze</dmn:description>
+        <dmn:inputEntry id="_34F058BE-193F-4A20-862E-C77DDE0420C7">
+          <dmn:text>[0..10]</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_094619F0-2C2B-476C-9207-A291AC2671AF">
+          <dmn:text>&gt;0</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_D44CD855-9378-4B2B-A103-2EA270FC70D0">
+          <dmn:text>"Bronze"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_388D68DC-3FBC-48E6-8D3F-277563EC328E">
+        <dmn:description>Set level to silver</dmn:description>
+        <dmn:inputEntry id="_CDD6783F-C81E-46C6-AC06-E0527D8A8CA9">
+          <dmn:text>[10..20]</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_186BDFB3-5FFA-4A46-B2E6-B41F695326B1">
+          <dmn:text>&gt;0</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_EFAA98E3-8D79-4EF3-A6E3-24CC8403A6A5">
+          <dmn:text>"Silver"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_59D7BE71-95DD-4A71-A349-AC761D88714F">
+        <dmn:description>Set level to gold</dmn:description>
+        <dmn:inputEntry id="_4087502B-E1E7-4C6F-AE63-AAB2780A0C1A">
+          <dmn:text>&gt;20</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_0707D86E-92D8-4AA8-86D1-5A591AADE57E">
+          <dmn:text>&gt;5</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_0450B554-1578-4029-B7A2-AEBC002220CC">
+          <dmn:text>"Gold"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_F91159C4-78C4-4461-B65C-407D4C5A38A4" name="YearsInScheme">
+    <dmn:variable id="_692A7569-9DC7-480E-A1DC-47D13076F02A" name="YearsInScheme" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_85ACC529-D048-42CD-90B9-50E667BBC143" name="NoOfFlights">
+    <dmn:variable id="_44A2A111-BC17-4F4B-98DB-B6DD3FD734CA" name="NoOfFlights" typeRef="number"/>
+  </dmn:inputData>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <di:extension>
-        <kie:ComponentsWidthsExtension/>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_B9061C56-A2A8-4050-B063-C55CEE927663">
+            <kie:width>50.0</kie:width>
+            <kie:width>204.0</kie:width>
+            <kie:width>205.0</kie:width>
+            <kie:width>256.0</kie:width>
+            <kie:width>280.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
       </di:extension>
+      <dmndi:DMNShape id="dmnshape-_600806C6-5E3E-4E69-90C5-0FDAB90D2F23" dmnElementRef="_600806C6-5E3E-4E69-90C5-0FDAB90D2F23" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="519" y="166" width="221" height="64"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_F91159C4-78C4-4461-B65C-407D4C5A38A4" dmnElementRef="_F91159C4-78C4-4461-B65C-407D4C5A38A4" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="772" y="277" width="153" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_85ACC529-D048-42CD-90B9-50E667BBC143" dmnElementRef="_85ACC529-D048-42CD-90B9-50E667BBC143" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="342" y="272" width="158" height="60"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_3355533B-C523-49D4-9418-83F08FF68085" dmnElementRef="_3355533B-C523-49D4-9418-83F08FF68085">
+        <di:waypoint x="772" y="302"/>
+        <di:waypoint x="740" y="198"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_2BC5F8DF-94BB-4832-BA9A-B596F7DCC9D5" dmnElementRef="_2BC5F8DF-94BB-4832-BA9A-B596F7DCC9D5">
+        <di:waypoint x="500" y="302"/>
+        <di:waypoint x="519" y="198"/>
+      </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </dmn:definitions>
